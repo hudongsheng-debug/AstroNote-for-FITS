@@ -1,0 +1,76 @@
+# AstroNote for FITS — User Guide
+
+Annotate astronomical images and keep observation notes alongside the details you want to remember.
+
+## Open an Image
+
+1. Open AstroNote on macOS 14 or later.
+2. Use the built-in example, or click **Open FITS / image…**.
+3. Select a supported FITS, PNG, JPEG, HEIC, or TIFF file.
+4. Enter an **Observation title**.
+
+## Add Annotations
+
+1. Choose a tool:
+   - **Point:** Click the image to place a point marker.
+   - **Text:** Click the image to add a text annotation.
+   - **Region:** Drag across the image to mark a rectangular region.
+2. Choose a marker color.
+3. Select an annotation in the list to edit its title and note.
+4. Write overall observations in **Observation notes**.
+
+Use **Delete annotation** to remove the selected annotation. **Undo** reverses annotation additions and deletions; text editing uses the standard system editing behavior.
+
+## Save and Export
+
+The current draft is saved automatically and restored when you reopen the app. To keep separate observations, export each one before replacing the current draft.
+
+- **Export annotations…:** Save a portable `.astronote` package.
+- **Export PNG…:** Save an image preview with annotations.
+- **Export notes…:** Save titles and notes as a UTF-8 text file.
+- **Import annotations…:** Open an existing annotation package.
+
+When switching away from a record containing annotations or observation notes, the app asks whether to replace the current draft. Cancel and export first if you want to keep a separate copy.
+
+An annotation package includes a reduced image preview, annotations, notes, the source filename, and file-matching metadata. It does not include the complete original FITS file. Review its contents before sharing it.
+
+## View Annotations in FITS QuickLook Studio
+
+1. Export a `.astronote` package from AstroNote.
+2. Open FITS QuickLook Studio 11.0.0 or later, available separately.
+3. Choose **Extensions → AstroNote · Annotations & notes**.
+4. Click **Import annotations…** and select your package.
+5. Review the reference image and notes on the extension page.
+6. Open the matching original FITS file in the workspace and turn on **Show annotations**.
+
+An overlay appears only when the file's SHA-256 fingerprint, original image dimensions, and HDU match the package. Moving or renaming an unchanged file does not affect this match; changing its contents does.
+
+Annotations follow the image's zoom, pan, and rotation. Turn off **Show annotations** to hide the workspace overlay. Importing a package replaces the currently loaded annotation package; packages are not merged.
+
+Packages made from ordinary images or the built-in example can be viewed on the extension page, but are not overlaid on unrelated FITS files. Annotations never modify the original FITS pixels.
+
+## Coordinates and Limits
+
+- Annotation coordinates are normalized from 0 to 1, with the origin at the image's top-left corner. They are not FITS pixel indices or WCS celestial coordinates.
+- Each record supports up to 500 annotations.
+- Supported FITS inputs are uncompressed 2D primary images and IMAGE extensions up to 512 MB. The first supported image HDU is loaded.
+- Supported BITPIX values: 8, 16, 32, 64, -32, and -64, with BSCALE, BZERO, and BLANK handling.
+- Compressed FITS, data cubes, WCS annotations, and merging multiple annotation packages are not supported in this version.
+- Previews and PNG exports have a maximum longest edge of 1024 pixels. They are intended for observation records, not full-resolution scientific-data export.
+
+## Troubleshooting
+
+- **Annotations do not appear in the main workspace:** Check **Show annotations**, open the original FITS file, and ensure its contents and HDU match the package.
+- **You want to keep several observations:** Export a separate `.astronote` file for each before switching records.
+- **You are using an early build:** Wait for the draft-saved message before exiting. The updated build includes a fix that saves pending changes when closing the window or quitting.
+- **Region marking does not respond:** Make sure **Region** is selected and drag within the image rather than clicking. Contact support if the issue persists. Rectangle data has passed automated tests; the region-drag interaction has not yet been fully verified in the current release testing.
+
+## Languages
+
+The interface supports English, French, Spanish, German, and Simplified Chinese. It follows your macOS app language settings.
+
+## Contact Support
+
+Email: [hudongsheng356@gmail.com](mailto:hudongsheng356@gmail.com)
+
+Please include the app version, macOS version, the steps you followed, and any error message. Avoid sending private images or observation data unless necessary to explain the issue.
